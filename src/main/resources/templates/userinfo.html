@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html llang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/theme.css">
+	<style>
+#footer {
+    padding: 15px 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+#topcontrol {
+  color: #fff;
+  z-index: 99;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  background: #222;
+  position: relative;
+  right: 14px !important;
+  bottom: 11px !important;
+  border-radius: 3px !important;
+}
+
+#topcontrol:after {
+  /*top: -2px;*/
+  left: 8.5px;
+  content: "\f106";
+  position: absolute;
+  text-align: center;
+  font-family: FontAwesome;
+}
+
+#topcontrol:hover {
+    color: #fff;
+    background: #18ba9b;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+	</style>
+  </head>
+  <body>
+ <div class="navbar-wrapper">
+      <div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			  <div class="container">
+				<div class="navbar-header">
+				  <a class="navbar-brand" th:href="@{/projects}" style="font-size:32px;">众筹网-创意产品众筹平台</a>
+				</div>
+            <div id="navbar" class="navbar-collapse collapse" style="float:right;">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${user.getUsername()}"><i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a th:href="@{/user/userinfo}"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
+                    <li class="divider"></li>
+                    <li><a th:href="@{/user/logout}"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+			  </div>
+			</nav>
+
+      </div>
+    </div>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-sm-3 col-md-3 column">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="thumbnail" style="    border-radius: 0px;">
+						<img src="/img/services-box1.jpg" class="img-thumbnail">
+						<div class="caption" style="text-align:center;">
+							<h3 th:text="${user.getUsername()}"></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item " style="cursor:pointer;" th:href="@{/user/myfunding}">
+					我的众筹<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
+				</a>
+                <a class="list-group-item active" th:href="@{/user/userinfo}">
+                    个人资料<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
+                </a>
+				<a class="list-group-item " th:href="@{/user/address}">
+				    收货地址<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
+				</a>
+			</div>
+		</div>
+        <div class="col-sm-9 col-md-9 column">
+			<div class="panel panel-default">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">
+			            个人资料
+			        </h3>
+			    </div>
+			    <div class="panel-body" style="width: 400px;">
+					<form role="form">
+						<div class="row">
+						    <div class="col-lg-6">
+								
+								<label >账号</label>
+						        <div class="input-group">
+						            <input disabled type="text" class="form-control" th:placeholder="${user.getLoginacct()}">
+						            <span class="input-group-btn">
+						                <button disabled class="btn btn-default" type="button">修改</button>
+						            </span>
+						        </div><!-- /input-group -->
+								
+								<label >昵称</label>
+								<div class="input-group">
+								    <input type="text" class="form-control" disabled th:placeholder="${user.getUsername()}">
+								    <span class="input-group-btn">
+								        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal1">修改</button>
+								    </span>
+								</div><!-- /input-group -->
+								
+								<label >邮箱</label>
+								<div class="input-group">
+								    <input type="text" class="form-control" disabled th:placeholder="${user.getEmail()}">
+								    <span class="input-group-btn">
+								        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal2">修改</button>
+								    </span>
+								</div><!-- /input-group -->
+						    </div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						<br>
+						<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal3">修改密码</button>
+					</form>	
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" >修改昵称</h4>
+            </div>
+            <div class="modal-body">
+				<form role="form" th:action="@{/user/userinfo/update_usrname}" method="post">
+					<div class="form-group">
+						 <label >请输入新昵称</label>
+						 <input type="text" name="newUserName" required class="form-control" style="width: 300px;"/>
+					</div>
+					<button type="submit" class="btn btn-primary">提交更改</button>
+				</form>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">修改邮箱</h4>
+            </div>
+            <div class="modal-body">
+				<form role="form" th:action="@{/user/userinfo/update_email}" method="post">
+					<div class="form-group">
+						 <label >请输入新邮箱</label>
+						 <input type="email" name="newEmail" required class="form-control" style="width: 300px;"/>
+						 <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
+					</div>
+					<button type="submit" class="btn btn-primary">提交更改</button>
+				</form>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">修改密码</h4>
+            </div>
+            <div class="modal-body">
+				<form role="form" th:action="@{/user/userinfo/update_pswd}" method="post">
+					<div class="form-group">
+						 <label >请输入原密码</label>
+						 <input type="text" name="oldPswd" required class="form-control" style="width: 300px;"/>
+					</div>
+					<div class="form-group">
+						 <label >请输入新密码</label>
+						 <input  type="text" name="newPswd1" required class="form-control" style="width: 300px;"/>
+					</div>
+					<div class="form-group">
+						 <label >请确认新密码</label>
+						 <input  type="text" name="newPswd2" required class="form-control" style="width: 300px;"/>
+					</div>
+					<button type="submit" class="btn btn-primary">提交更改</button>
+				</form>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script src="/jquery/jquery-2.1.1.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/script/docs.min.js"></script>
+<script src="/script/back-to-top.js"></script>
+<script src="/script/echarts.js"></script>
+    
+</body>
+</html>

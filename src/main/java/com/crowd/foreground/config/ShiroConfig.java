@@ -42,19 +42,29 @@ public class ShiroConfig {
         Map<String,String> filterMap = new LinkedHashMap<String,String>();
 
         //放行login.html页面
-        filterMap.put("/login", "anon");
+        filterMap.put("/user/login", "anon");
+        filterMap.put("/user/signup", "anon");
+        filterMap.put("/index", "anon");
 
         //授权过滤器
         //注意：当前授权拦截后，shiro会自动跳转到未授权页面
         //perms括号中的内容是权限的值
         //filterMap.put("/add", "perms[user:add]");
 
-        //filterMap.put("/*", "authc");
+        filterMap.put("/user/userinfo", "authc");
+        filterMap.put("/user/address", "authc");
+        filterMap.put("/user/address/add", "authc");
+        filterMap.put("/user/address/delete", "authc");
+        filterMap.put("/user/myfunding", "authc");
+        filterMap.put("/user/myfunding/delelte_order", "authc");
+        filterMap.put("/project/pay_step2", "authc");
+        filterMap.put("/project/pay_step3", "authc");
+        filterMap.put("/project/pay_step4", "authc");
 
         //修改调整的登录页面
         shiroFilterFactoryBean.setLoginUrl("/user/login");
         //设置未授权提示页面
-        //shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/noAuth");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 

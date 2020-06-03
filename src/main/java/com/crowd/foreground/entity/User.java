@@ -13,6 +13,14 @@ public class User {
 
     private String createtime;
 
+    public User(String loginacct, String userpswd, String username, String email, String createtime) {
+        this.loginacct = loginacct;
+        this.userpswd = userpswd;
+        this.username = username;
+        this.email = email;
+        this.createtime = createtime;
+    }
+
     public Integer getId() {
         return id;
     }

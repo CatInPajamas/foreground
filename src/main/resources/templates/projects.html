@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/theme.css">
+	<style>
+#footer {
+    padding: 15px 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+#topcontrol {
+  color: #fff;
+  z-index: 99;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  background: #222;
+  position: relative;
+  right: 14px !important;
+  bottom: 11px !important;
+  border-radius: 3px !important;
+}
+
+#topcontrol:after {
+  /*top: -2px;*/
+  left: 8.5px;
+  content: "\f106";
+  position: absolute;
+  text-align: center;
+  font-family: FontAwesome;
+}
+
+#topcontrol:hover {
+    color: #fff;
+    background: #18ba9b;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.label-type, .label-status, .label-order {
+    background-color: #fff;
+    color: #f60;
+    padding : 5px;
+    border: 1px #f60 solid;
+}
+#typeList  :not(:first-child) {
+    margin-top:20px;
+}
+.label-text {
+    margin:0 10px;
+}
+.panel {
+    border-radius:0;
+}
+h3.break {
+    font-size:16px;
+    display: block;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+h3.break>a {
+    text-decoration:none;
+}
+	</style>
+  </head>
+  <body>
+ <div class="navbar-wrapper">
+      <div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			  <div class="container">
+				<div class="navbar-header">
+				  <a class="navbar-brand" th:href="@{/index}" style="font-size:32px;">众筹网</a>
+				</div>
+            <div id="navbar" class="navbar-collapse collapse" style="float:right;">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${user.getUsername()}" th:if="${not #strings.isEmpty(user)}"><i class="glyphicon glyphicon-user"></i><span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a th:href="@{/user/userinfo}"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
+                    <li class="divider"></li>
+                    <li><a th:href="@{/user/logout}"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+			  </div>
+			</nav>
+      </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <nav class="navbar navbar-default" role="navigation">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a rel="nofollow" th:href="@{/index}"><i class="glyphicon glyphicon-home"></i> 众筹首页</a>
+                                </li>
+                                <li class="active">
+                                    <a rel="nofollow" href="javascript:;"><i class="glyphicon glyphicon-th-large"></i> 项目总览</a>
+                                </li>
+                                <li>
+                                    <a rel="nofollow" th:href="@{/user/myfunding}"><i class="glyphicon glyphicon-user"></i> 我的众筹</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="panel panel-default">
+                            <ul id="typeList" style="list-style: none;" th:with="param1=${#request.requestURL},param2=${#request.queryString}">
+                                <li>
+                                    分类：<a class="label-type actvie" th:href="@{${param1}+'?'+${param2}+'&typeid='}" >全部</a>
+                                    <a class="label-text" th:href="@{${param1}+'?typeid=1&'+${#strings.substringAfter(param2,'&')}}">科技</a>
+                                    <a class="label-text" th:href="@{${param1}+'?typeid=2&'+${#strings.substringAfter(param2,'&')}}">设计</a>
+                                    <a class="label-text" th:href="@{${param1}+'?typeid=3&'+${#strings.substringAfter(param2,'&')}}">农业</a>
+                                    <a class="label-text" th:href="@{${param1}+'?typeid=4&'+${#strings.substringAfter(param2,'&')}}">其他</a>
+                                </li>
+                                <li >
+                                    状态：
+                                    <a class="label-status actvie" th:href="@{${#request.requestURL}+'?'+${param1}+'&status='}">全部</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'&')}+'&status=0&c'+${#strings.substringAfter(param2,'c')}}">即将开始</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'&')}+'&status=1&c'+${#strings.substringAfter(param2,'c')}}">众筹中</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'&')}+'&status=2&c'+${#strings.substringAfter(param2,'c')}}">众筹成功</a>
+                                </li>
+                                <li>
+                                    排序：
+                                    <a class="label-order actvie">综合排序</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'c')}+'criteria=1'}">最新上线</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'c')}+'criteria=2'}">金额最多</a>
+                                    <a class="label-text" th:href="@{${param1}+'?'+${#strings.substringBefore(param2,'c')}+'criteria=3'}">支持最多</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer" style="height:50px;padding:0;">
+                            <div style="float:left;padding:15px;" th:text="'共'+${projects.size()}+'个众筹项目'"></div>
+                            <div style="float:right;">
+                                <form class="navbar-form navbar-left" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="请输入搜索内容">
+                                    </div>
+                                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> 搜索</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        
+        <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
+                <div class="col-md-3" th:each="project:${projects}">
+                    <div class="thumbnail">
+                        <img alt="300x200" th:src="${project.getHead_picture_path()}" />
+                        <div class="caption">
+                            <h3 class="break">
+                                <a th:href="@{/project(projectid=${project.getId()})}" th:text="${project.getName()}"></a>
+                            </h3>
+                            <br>
+                            <div class="progress" style="height:10px; margin-bottom: 4px;">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" th:style="'width: '+${project.getPercentage()}+'%'">
+                                </div>
+                            </div>
+                            <div>
+												<span style="margin-left: 2px;font-size: smaller" th:text="'目标金额：￥'+${project.getMoney()}">
+												</span>
+                                <span style="margin-left: 2px;font-size: smaller" th:text="'已筹资金：￥'+${project.getSupportmoney()}">
+												</span>
+                            </div>
+                            <div style="margin-top: 2px">
+												<span style="margin-left: 2px;font-size: smaller" th:text="'已达成 ：'+${project.getPercentage()}+'%'">
+													<i class="glyphicon glyphicon-star-empty" ></i>
+												</span>
+                                <span style="margin-left: 2px;font-size: smaller" th:text="'支持人数：'+${project.getSupporter()}">
+													<i class="glyphicon glyphicon-star-empty" ></i>
+												</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+        
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column" style="text-align:center">
+                    <ul class="pagination">
+                        <li>
+                            <a rel="nofollow" href="#">上一页</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">1</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">2</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">3</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">4</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">5</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="#">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <script src="/jquery/jquery-2.1.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/script/docs.min.js"></script>
+    <script src="/script/back-to-top.js"></script>
+	<script>
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+	</script>
+  </body>
+</html>

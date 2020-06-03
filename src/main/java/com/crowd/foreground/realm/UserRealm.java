@@ -24,7 +24,12 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
-        User user =userService.findByUserName(token.getUsername());
+        User user = null;
+        try {
+            user = userService.findByUserName(token.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if(user==null){
             //用户名不存在

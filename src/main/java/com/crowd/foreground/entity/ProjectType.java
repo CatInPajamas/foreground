@@ -1,17 +1,14 @@
 package com.crowd.foreground.entity;
 
-/**
- * 实体类，项目类型
- */
-public class PortalType {
-    private Integer id;
-    private String name;
+public class ProjectType {
+    int id;
+    String name;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -22,5 +19,4 @@ public class PortalType {
     public void setName(String name) {
         this.name = name;
     }
-
 }
