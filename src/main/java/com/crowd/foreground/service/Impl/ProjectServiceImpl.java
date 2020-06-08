@@ -115,7 +115,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id, Integer status,Integer criteria) {
+    public List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id, Integer status,Integer criteria) throws Exception {
         List<ProjectInfo> list=new ArrayList<>();
         switch (criteria){
             case 0:

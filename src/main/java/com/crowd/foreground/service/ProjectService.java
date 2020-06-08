@@ -23,7 +23,7 @@ public interface ProjectService {
 
     List<ProjectInfo> getAllProjects();
 
-    List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id,Integer status,Integer criteria);
+    List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id,Integer status,Integer criteria) throws Exception;
 
     PriceItem getPriceItemByItemId(Integer id);
 

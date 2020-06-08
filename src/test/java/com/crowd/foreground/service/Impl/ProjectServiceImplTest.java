@@ -42,7 +42,7 @@ class ProjectServiceImplTest {
 
 
     @Test
-    public void test1(){
+    public void test1() throws Exception{
         List<ProjectInfo> list=projectService.getProjectInfoByTypeAndStatus("",1,1,3);
         for (int i = 0; i <list.size() ; i++) {
             System.out.println(list.get(i).getName());

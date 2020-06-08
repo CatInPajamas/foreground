@@ -132,7 +132,7 @@ h3.break>a {
                                                                              param3=${#request.getParameter('status')},
                                                                              param4=${#request.getParameter('criteria')}">
                             <li style="margin-top: 10px">
-                                分类：<a class="label-type actvie" th:href="@{${param1}+'?typeid='+'&status='+${param3}+'&criteria=1'+${param4}}">全部</a>
+                                分类：<a class="label-type actvie" th:href="@{${param1}+'?typeid='+'&status='+${param3}+'&criteria='+${param4}}">全部</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid=1'+'&status='+${param3}+'&criteria='+${param4}}">科技</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid=2'+'&status='+${param3}+'&criteria='+${param4}}">设计</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid=3'+'&status='+${param3}+'&criteria='+${param4}}">农业</a>
@@ -140,7 +140,7 @@ h3.break>a {
                             </li>
                             <li >
                                 状态：
-                                <a class="label-status actvie" th:href="@{${param1}+'?typeid='+${param2}+'&status='+'&criteria=1'+${param4}}">全部</a>
+                                <a class="label-status actvie" th:href="@{${param1}+'?typeid='+${param2}+'&status='+'&criteria='+${param4}}">全部</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid='+${param2}+'&status=0'+'&criteria='+${param4}}">即将开始</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid='+${param2}+'&status=1'+'&criteria='+${param4}}">众筹中</a>
                                 <a class="label-text" th:href="@{${param1}+'?typeid='+${param2}+'&status=2'+'&criteria='+${param4}}">众筹成功</a>
@@ -156,7 +156,7 @@ h3.break>a {
                         <div class="panel-footer" style="height:50px;padding:0;">
                             <div style="float:left;padding:15px;" th:text="'共'+${projects.size()}+'个众筹项目'" ></div>
                             <div style="float:right;">
-                                <form class="navbar-form navbar-left" role="search" th:action="@{/projects}" method="post">
+                                <form class="navbar-form navbar-left" role="search" th:action="@{/projects(typeid=${#request.getParameter('typeid')},status=${#request.getParameter('status')},criteria=${#request.getParameter('criteria')})}" method="post">
                                     <div class="form-group">
                                         <input type="text" name="keyword" class="form-control" placeholder="请输入搜索内容">
                                     </div>

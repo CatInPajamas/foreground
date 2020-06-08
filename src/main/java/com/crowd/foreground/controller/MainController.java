@@ -75,10 +75,10 @@ public class MainController {
 
     @RequestMapping("/projects")
     public String toProjectsPage(@RequestParam(value="keyword", defaultValue="") String keyword,
-                                 @RequestParam(value ="typeid",defaultValue ="") Integer typeid,
-                                 @RequestParam(value ="status",defaultValue ="") Integer status,
+                                 @RequestParam(value ="typeid") Integer typeid,
+                                 @RequestParam(value ="status",defaultValue ="1") Integer status,
                                  @RequestParam(value ="criteria",defaultValue ="0")Integer criteria,
-                                 Model model){
+                                 Model model) throws Exception{
         List<ProjectType> typeList=projectService.getAllType();
         List<ProjectInfo> projects=projectService.getProjectInfoByTypeAndStatus(keyword,typeid,status,criteria);
         model.addAttribute("projects",projects);
