@@ -2,6 +2,9 @@ package com.crowd.foreground.config;
 
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 支付宝接入的配置信息
+ */
 @Configuration
 public class AlipayConfig {
 

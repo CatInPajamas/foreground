@@ -1,5 +1,8 @@
 package com.crowd.foreground.entity;
 
+/**
+ * 地址实体类
+ */
 public class Address {
     private Integer id;
     private Integer userid;

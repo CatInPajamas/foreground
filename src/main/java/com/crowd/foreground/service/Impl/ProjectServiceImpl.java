@@ -23,23 +23,40 @@ public class ProjectServiceImpl implements ProjectService {
     public void saveProject(Project portalProject, Integer memberId) {
     }
 
+    /**
+     * 获取所有项目类型
+     * @return
+     */
     @Override
     public List<ProjectType> getAllType() {
         return projectDao.getAllType();
     }
 
+    /**
+     * 根据项目id获取项目名
+     * @param id
+     * @return
+     */
     @Override
     public String getProjectNameById(Integer id) {
         return projectDao.getProjectNameById(id);
     }
 
+    /**
+     * 根据项目类型id获取这个类型的所有项目
+     * @param id
+     * @return
+     */
     @Override
     public List<ProjectInfo> getProjectInfoByTypeid(Integer id) {
-
-
         return projectDao.getProjectInfoByTypeid(id);
     }
 
+    /**
+     * 根据项目id获取想要的项目信息，存入map中
+     * @param id
+     * @return
+     */
     @Override
     public Map<String,String> getProjectDetail(Integer id) {
         Project project=projectDao.getProjectById(id);
@@ -104,16 +121,34 @@ public class ProjectServiceImpl implements ProjectService {
         return map;
     }
 
+    /**
+     * 根据项目id获取这个项目下的所有支持项信息
+     * @param id
+     * @return
+     */
     @Override
     public List<PriceItem> getPriceItemById(Integer id) {
         return projectDao.getPriceItemById(id);
     }
 
+    /**
+     * 获取所有项目信息
+     * @return
+     */
     @Override
     public List<ProjectInfo> getAllProjects() {
         return projectDao.getAllProjects();
     }
 
+    /**
+     * 根据条件筛选项目
+     * @param keyword
+     * @param id
+     * @param status
+     * @param criteria
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id, Integer status,Integer criteria) throws Exception {
         List<ProjectInfo> list=new ArrayList<>();
@@ -134,16 +169,31 @@ public class ProjectServiceImpl implements ProjectService {
         return list;
     }
 
+    /**
+     * 根据支持项id获取支持项信息
+     * @param id
+     * @return
+     */
     @Override
     public PriceItem getPriceItemByItemId(Integer id) {
         return projectDao.getPriceItemByItemId(id);
     }
 
+    /**
+     * 根据支持项id获取对应项目名
+     * @param id
+     * @return
+     */
     @Override
     public String getProjectNameByItemId(Integer id) {
         return projectDao.getProjectNameByItemId(id);
     }
 
+    /**
+     * 跟新项目的已筹集钱数
+     * @param id
+     * @param money
+     */
     @Override
     public void updateProject(Integer id, Double money) {
         projectDao.updateProject(id,money);

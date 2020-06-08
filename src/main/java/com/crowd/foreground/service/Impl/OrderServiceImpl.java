@@ -18,26 +18,51 @@ public class OrderServiceImpl implements OrderService {
         orderDao.saveOrder(order);
     }
 
+    /**
+     * 根据订单号获取订单信息
+     * @param id
+     * @return
+     */
     @Override
     public Order getOrderById(Long id) {
         return orderDao.getOrderById(id);
     }
 
+    /**
+     * 根据订单号更新订单信息，更新订单的支付状态和支付账单号
+     * @param id
+     * @param status
+     * @param payno
+     */
     @Override
     public void updateOrderById(Long id, Integer status, String payno) {
         orderDao.updateOrderById(id,status,payno);
     }
 
+    /**
+     * 根据订单号获取项目名
+     * @param id
+     * @return
+     */
     @Override
     public String getProjectNameByOrderID(Long id) {
         return orderDao.getProjectNameByOrderID(id);
     }
 
+    /**
+     * 根据用户id获取其所有的订单信息
+     * @param userid
+     * @return
+     */
     @Override
     public List<Order> getOrderByUserId(Integer userid) {
         return orderDao.getOrderByUserId(userid);
     }
 
+    /**
+     * 根订单号删除订单
+     * @param id
+     */
     @Override
     public void deleteOrderById(Long id) {
         orderDao.deleteOrderById(id);

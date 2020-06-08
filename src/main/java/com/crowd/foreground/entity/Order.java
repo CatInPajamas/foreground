@@ -2,6 +2,9 @@ package com.crowd.foreground.entity;
 
 import java.util.Date;
 
+/**
+ * 订单实体类
+ */
 public class Order {
     private long id;
     private Integer userid;

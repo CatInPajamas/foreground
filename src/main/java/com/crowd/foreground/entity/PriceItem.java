@@ -1,6 +1,8 @@
 package com.crowd.foreground.entity;
 
-
+/**
+ * 项目支持项实体类
+ */
 public class PriceItem {
     private Integer id;
     private Integer projectId;

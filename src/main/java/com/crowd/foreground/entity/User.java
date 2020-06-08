@@ -1,5 +1,8 @@
 package com.crowd.foreground.entity;
 
+/**
+ * 用户实体类
+ */
 public class User {
     private Integer id;
 

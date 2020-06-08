@@ -1,7 +1,7 @@
 package com.crowd.foreground.entity;
 
 /**
- * 用于首页显示
+ *  项目实体类  用于首页显示
  */
 public class ProjectInfo {
     private Integer id;

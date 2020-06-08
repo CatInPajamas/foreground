@@ -1,5 +1,8 @@
 package com.crowd.foreground.entity;
 
+/**
+ * 项目类型实体类
+ */
 public class ProjectType {
     int id;
     String name;
