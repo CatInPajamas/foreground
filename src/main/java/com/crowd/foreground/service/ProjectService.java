@@ -23,11 +23,12 @@ public interface ProjectService {
 
     List<ProjectInfo> getAllProjects();
 
-    List<ProjectInfo> getProjectInfoByTypeAndStatus(Integer id,Integer status,Integer criteria);
+    List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id,Integer status,Integer criteria);
 
     PriceItem getPriceItemByItemId(Integer id);
 
     String getProjectNameByItemId(Integer id);
 
     void updateProject(Integer id, Double money);
+
 }

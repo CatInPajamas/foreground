@@ -52,9 +52,41 @@ public interface ProjectDao {
      */
     @Select("SELECT t_project.id id,t_project.name name,money money,supportmoney supportmoney,supportmoney/money*100 percentage,supporter supporter,head_picture_path head_picture_path " +
             "FROM t_project LEFT JOIN t_project_type ON t_project.id=t_project_type.projectid " +
-            "WHERE 1=1 and (#{id} is null or t_project_type.typeid=#{id}) and (#{status} is null or t_project.status=#{status})" +
-            "ORDER BY #{order} DESC ")
-    List<ProjectInfo> getProjectInfoByTypeAndStatus(Integer id,Integer status,String order);
+            "WHERE name like '%${keyword}%' and (#{id} is null or t_project_type.typeid=#{id}) and (#{status} is null or t_project.status=#{status})")
+    List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id,Integer status);
+
+    /**
+     * 根据项目分类和状态组合筛选 按发布时间排序
+     * @param id
+     * @return
+     */
+    @Select("SELECT t_project.id id,t_project.name name,money money,supportmoney supportmoney,supportmoney/money*100 percentage,supporter supporter,head_picture_path head_picture_path " +
+            "FROM t_project LEFT JOIN t_project_type ON t_project.id=t_project_type.projectid " +
+            "WHERE name like '%${keyword}%' and (#{id} is null or t_project_type.typeid=#{id}) and (#{status} is null or t_project.status=#{status})" +
+            "ORDER BY date_format(deploydate,'%Y%m%d') DESC ")
+    List<ProjectInfo> getProjectInfoByTypeAndStatus1(String keyword,Integer id,Integer status);
+
+    /**
+     * 根据项目分类和状态组合筛选 按项目金额排序
+     * @param id
+     * @return
+     */
+    @Select("SELECT t_project.id id,t_project.name name,money money,supportmoney supportmoney,supportmoney/money*100 percentage,supporter supporter,head_picture_path head_picture_path " +
+            "FROM t_project LEFT JOIN t_project_type ON t_project.id=t_project_type.projectid " +
+            "WHERE name like '%${keyword}%' and (#{id} is null or t_project_type.typeid=#{id}) and (#{status} is null or t_project.status=#{status})" +
+            "ORDER BY money DESC ")
+    List<ProjectInfo> getProjectInfoByTypeAndStatus2(String keyword,Integer id,Integer status);
+
+    /**
+     * 根据项目分类和状态组合筛选 按支持人数排序
+     * @param id
+     * @return
+     */
+    @Select("SELECT t_project.id id,t_project.name name,money money,supportmoney supportmoney,supportmoney/money*100 percentage,supporter supporter,head_picture_path head_picture_path " +
+            "FROM t_project LEFT JOIN t_project_type ON t_project.id=t_project_type.projectid " +
+            "WHERE name like '%${keyword}%' and (#{id} is null or t_project_type.typeid=#{id}) and (#{status} is null or t_project.status=#{status})" +
+            "ORDER BY supporter DESC ")
+    List<ProjectInfo> getProjectInfoByTypeAndStatus3(String keyword,Integer id,Integer status);
 
     /**
      * 根据所选项目的支持项id选择支持项
@@ -87,5 +119,6 @@ public interface ProjectDao {
 
     @Update("update t_project set supportmoney=supportmoney+#{money},supporter=supporter+1 where id=#{id}")
     void updateProject(Integer id, Double money);
+
 
 }

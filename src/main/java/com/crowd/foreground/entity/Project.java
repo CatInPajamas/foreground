@@ -10,7 +10,7 @@ public class Project {
     private Double money;
     private Integer status;
     private Integer day;
-    private String deploydata;
+    private String deploydate;
     private Double supportmoney;
     private Integer supporter;
     private String head_picture_path;
@@ -64,12 +64,12 @@ public class Project {
         this.day = day;
     }
 
-    public String getDeploydata() {
-        return deploydata;
+    public String getDeploydate() {
+        return deploydate;
     }
 
-    public void setDeploydata(String deploydata) {
-        this.deploydata = deploydata;
+    public void setDeploydate(String deploydate) {
+        this.deploydate = deploydate;
     }
 
     public Double getSupportmoney() {
@@ -113,7 +113,7 @@ public class Project {
                 ", money=" + money +
                 ", status=" + status +
                 ", day=" + day +
-                ", deploydata='" + deploydata + '\'' +
+                ", deploydata='" + deploydate + '\'' +
                 ", supportmoney=" + supportmoney +
                 ", supporter=" + supporter +
                 ", head_picture_path='" + head_picture_path + '\'' +

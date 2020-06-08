@@ -63,7 +63,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         // 根据deployeDate 计算lastDay
-        String deployDate =project.getDeploydata();
+        String deployDate =project.getDeploydate();
         // 获取当前日期
         Date currentDay = new Date();
         // 把众筹日期解析成Date 类型
@@ -87,7 +87,12 @@ public class ProjectServiceImpl implements ProjectService {
         double supportmoney=project.getSupportmoney();
         double money=project.getMoney();
         double d=Double.valueOf(supportmoney)/Double.valueOf(money)*100;
-        String percentage=String.format("%.1f", d);
+        String percentage;
+        if(d==0){
+            percentage="0";
+        }else {
+            percentage=String.format("%.1f", d);
+        }
         map.put("supportor",String.valueOf(project.getSupporter()));
         map.put("supportmoney",String.valueOf(supportmoney));
         map.put("money",String.valueOf(money));
@@ -110,20 +115,20 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<ProjectInfo> getProjectInfoByTypeAndStatus(Integer id, Integer status,Integer criteria) {
+    public List<ProjectInfo> getProjectInfoByTypeAndStatus(String keyword,Integer id, Integer status,Integer criteria) {
         List<ProjectInfo> list=new ArrayList<>();
         switch (criteria){
             case 0:
-                list=projectDao.getProjectInfoByTypeAndStatus(id,status,"t_project.id");
+                list=projectDao.getProjectInfoByTypeAndStatus(keyword,id,status);
                 break;
             case 1:
-                list=projectDao.getProjectInfoByTypeAndStatus(id,status,"date_format(date,'%Y%m%d')");
+                list=projectDao.getProjectInfoByTypeAndStatus1(keyword,id,status);
                 break;
             case 2:
-                list=projectDao.getProjectInfoByTypeAndStatus(id,status,"money");
+                list=projectDao.getProjectInfoByTypeAndStatus2(keyword,id,status);
                 break;
             case 3:
-                list=projectDao.getProjectInfoByTypeAndStatus(id,status,"supporter");
+                list=projectDao.getProjectInfoByTypeAndStatus3(keyword,id,status);
                 break;
         }
         return list;
@@ -143,4 +148,6 @@ public class ProjectServiceImpl implements ProjectService {
     public void updateProject(Integer id, Double money) {
         projectDao.updateProject(id,money);
     }
+
+
 }

@@ -48,7 +48,7 @@ public class LoginController {
 
             //登录成功
             //跳转到test.html
-            return "redirect:/projects";
+            return "redirect:/projects?typeid=&status=";
         } catch (UnknownAccountException e) {
             //e.printStackTrace();
             //登录失败:用户名不存在，UnknownAccountException是Shiro抛出的找不到用户异常

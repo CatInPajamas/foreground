@@ -39,19 +39,14 @@ class ProjectServiceImplTest {
     @Autowired
     private ProjectDao projectDao;
 
-    @Test
-    public void test(){
-        //List<ProjectInfo> list=projectService.getProjectInfoByTypeAndStatus(1,1,3);
-        List<ProjectInfo> list=projectDao.getProjectInfoByTypeAndStatus(1,1,"supporter");
-        for(int i=0;i<list.size();i++){
-            System.out.println(list.get(i).getSupporter());
-        }
-    }
+
 
     @Test
     public void test1(){
-        PriceItem priceItem=projectService.getPriceItemByItemId(4);
-        System.out.println(priceItem.toString());
+        List<ProjectInfo> list=projectService.getProjectInfoByTypeAndStatus("",1,1,3);
+        for (int i = 0; i <list.size() ; i++) {
+            System.out.println(list.get(i).getName());
+        }
     }
 
     @Test
@@ -62,4 +57,5 @@ class ProjectServiceImplTest {
         System.out.println("nowtime"+nowtime);
 
     }
+
 }

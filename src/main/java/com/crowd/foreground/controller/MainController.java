@@ -74,12 +74,13 @@ public class MainController {
     }
 
     @RequestMapping("/projects")
-    public String toProjectsPage(@RequestParam(value ="typeid",defaultValue ="") Integer typeid,
+    public String toProjectsPage(@RequestParam(value="keyword", defaultValue="") String keyword,
+                                 @RequestParam(value ="typeid",defaultValue ="") Integer typeid,
                                  @RequestParam(value ="status",defaultValue ="") Integer status,
-                                 @RequestParam(value ="orderby",defaultValue ="0")Integer criteria,
+                                 @RequestParam(value ="criteria",defaultValue ="0")Integer criteria,
                                  Model model){
         List<ProjectType> typeList=projectService.getAllType();
-        List<ProjectInfo> projects=projectService.getProjectInfoByTypeAndStatus(typeid,status,criteria);
+        List<ProjectInfo> projects=projectService.getProjectInfoByTypeAndStatus(keyword,typeid,status,criteria);
         model.addAttribute("projects",projects);
         model.addAttribute("typeList",typeList);
         //获取当前登录用户
@@ -88,7 +89,6 @@ public class MainController {
         model.addAttribute("user",user);
         return "projects";
     }
-
 
 
     @RequestMapping("/user/myfunding")
