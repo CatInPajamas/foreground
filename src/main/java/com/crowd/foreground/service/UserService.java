@@ -17,7 +17,6 @@ public interface UserService {
 
     void deleteAddressById(Integer id) throws Exception;
 
-    List<Integer> getUserProjectsByUserId(Integer userid) throws Exception;
 
     void updateUsrName(String name,Integer id) throws Exception;
 

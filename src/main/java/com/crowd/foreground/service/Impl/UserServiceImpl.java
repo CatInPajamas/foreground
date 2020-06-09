@@ -58,16 +58,6 @@ public class UserServiceImpl implements UserService {
         userDao.deleteAddressById(id);
     }
 
-    /**
-     * 根据用户id获取其所拥有的项目信息
-     * @param userid
-     * @return
-     * @throws Exception
-     */
-    @Override
-    public List<Integer> getUserProjectsByUserId(Integer userid) throws Exception {
-        return userDao.getUserProjectsByUserId(userid);
-    }
 
     /**
      * 修改用户昵称

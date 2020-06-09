@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ProjectService {
-    void saveProject(Project portalProject, Integer memberId);
 
     List<ProjectType> getAllType();
 

@@ -4,6 +4,7 @@ import com.crowd.foreground.entity.PriceItem;
 import com.crowd.foreground.entity.Project;
 import com.crowd.foreground.entity.ProjectInfo;
 import com.crowd.foreground.entity.ProjectType;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Mapper
 public interface ProjectDao {
+
 
     /**
      * 根据项目类型id选择项目

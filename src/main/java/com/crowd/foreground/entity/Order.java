@@ -30,6 +30,22 @@ public class Order {
         this.payno = payno;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userid=" + userid +
+                ", projectid=" + projectid +
+                ", itemid=" + itemid +
+                ", createtime=" + createtime +
+                ", money=" + money +
+                ", status=" + status +
+                ", addressid=" + addressid +
+                ", remark='" + remark + '\'' +
+                ", payno='" + payno + '\'' +
+                '}';
+    }
+
     public Integer getUserid() {
         return userid;
     }

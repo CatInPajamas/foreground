@@ -10,6 +10,14 @@ public class PriceItem {
     private Integer delivery;
     private String introduce;
 
+    public PriceItem(Integer id, Integer projectId, double money, Integer delivery, String introduce) {
+        this.id = id;
+        this.projectId = projectId;
+        this.money = money;
+        this.delivery = delivery;
+        this.introduce = introduce;
+    }
+
     public Integer getId() {
         return id;
     }

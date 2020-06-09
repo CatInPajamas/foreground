@@ -19,9 +19,6 @@ import java.util.*;
 public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectDao projectDao;
-    @Override
-    public void saveProject(Project portalProject, Integer memberId) {
-    }
 
     /**
      * 获取所有项目类型

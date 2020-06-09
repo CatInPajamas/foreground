@@ -5,6 +5,7 @@ import com.crowd.foreground.entity.Order;
 import com.crowd.foreground.entity.User;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 import org.apache.ibatis.annotations.*;
+import org.aspectj.lang.annotation.DeclareError;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,9 @@ public interface UserDao {
 
     @Insert("INSERT INTO `t_user_address`(`userid`, `tel`, `address`, `realname`) VALUES (#{userid}, #{tel}, #{address}, #{realname})")
     void addAddress(Address address) throws Exception;
+
+    @Delete("delete from t_user_address where userid=${id}")
+    void deleteAddressByUserId(Integer id) throws Exception;
 
     @Delete("delete from t_user_address where id=${id}")
     void deleteAddressById(Integer id) throws Exception;
@@ -44,4 +48,7 @@ public interface UserDao {
 
     @Select("select count(id) from t_user where loginacct=#{loginacct}")
     int checkUser(String loginacct);
+
+    @Delete("delete from t_user where id=#{id}")
+    void deleteUser(Integer id);
 }
