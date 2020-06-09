@@ -1,6 +1,7 @@
 package com.crowd.foreground.service.Impl;
 
 import com.crowd.foreground.ForegroundApplication;
+import com.crowd.foreground.dao.ProjectDao;
 import com.crowd.foreground.entity.PriceItem;
 import com.crowd.foreground.entity.ProjectInfo;
 import com.crowd.foreground.entity.ProjectType;
@@ -25,6 +26,9 @@ public class ProjectServiceImplTest {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private ProjectDao projectDao;
 
 
 

@@ -104,9 +104,9 @@ public interface ProjectDao {
      * @param id
      * @return List<PriceItem>
      */
-    @Select("SELECT t_project_item.id,t_project_item.money,delivery,introduce " +
-            "from t_project_item LEFT JOIN t_project on t_project_item.projectid=t_project.id " +
-            "WHERE t_project.id=#{id} " +
+    @Select("SELECT * "+
+            "from t_project_item "+
+            "WHERE projectid=#{id} "+
             "ORDER BY t_project_item.money desc")
     List<PriceItem> getPriceItemById(Integer id);
 
