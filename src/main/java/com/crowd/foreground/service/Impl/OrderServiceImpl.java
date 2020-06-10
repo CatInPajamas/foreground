@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 根订单号删除订单11
+     * 根订单号删除订单
      * @param id
      */
     @Override
