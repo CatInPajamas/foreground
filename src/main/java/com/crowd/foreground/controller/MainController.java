@@ -75,7 +75,7 @@ public class MainController {
 
     @RequestMapping("/projects")
     public String toProjectsPage(@RequestParam(value="keyword", defaultValue="") String keyword,
-                                 @RequestParam(value ="typeid") Integer typeid,
+                                 @RequestParam(value ="typeid",required = false) Integer typeid,
                                  @RequestParam(value ="status",defaultValue ="1") Integer status,
                                  @RequestParam(value ="criteria",defaultValue ="0")Integer criteria,
                                  Model model) throws Exception{

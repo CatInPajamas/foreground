@@ -18,7 +18,7 @@ public class AlipayConfig {
     public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgHozrpH4SRqgDmxIEdH9vVHWXbQv8cojLxt9BhjNdh5nV18xCm4NlJoJIFfesPqETiowxjkaduiO5/qEtipQ1gNuzIwTF38LMplDqtsqP7H77n9ms54VNduuWtBzZ/EH4G6aLDmhwTjCmm9sMkFQiN+1a1lv0ii+7C3aMmCA9NrwZCQHrWE2fPkHLi+x0aUH1wewOhVFETbkKlBOW34ZROted1JYLn8PaHLMdewLjW0QvnA+65+Eww9sI8cmkWHzmgnEya264X8wPulFnSUgD0JNISXPG4Xg/M+3SeJSZ8W68t1q31bQZhgERJ+FMAEALdbBcXg13yaqzKBxU1P/ZwIDAQAB";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问(其实就是支付成功后返回的页面)
-    public static String return_url = "http://localhost:9091/project/pay_step4";
+    public static String return_url = "http://localhost:10086/project/pay_step4";
 
     // 签名方式
     public static String sign_type = "RSA2";
